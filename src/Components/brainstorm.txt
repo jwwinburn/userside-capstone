@@ -1,0 +1,3 @@
+-I want to add a edit and delete button next to the players name on the card.
+When edit is clicked, I want user to be directed back to original NewPlayerForm for the edit.
+When delete is clicked, I want user to be warned and have to confirm delte.
