@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate  } from "react-router-dom"
 export const NavBar = () => {
+    const navigate = useNavigate()
     return <>
-    <div className="navbar bg-base-100">
+    
+    <div className="navbar bg-neutral">
   <div className="flex-1">
     <li className="btn btn-ghost normal-case text-xl"><Link to="/#">Cue'd Up</Link></li>
   </div>
@@ -18,6 +20,16 @@ export const NavBar = () => {
           <li><a>Submenu 2</a></li>
         </ul>
       </li>
+      {
+                localStorage.getItem("user")
+                    ? <li className="navbar__item navbar__logout">
+                        <Link className="navbar__link" to="" onClick={() => {
+                            localStorage.removeItem("user")
+                            navigate("/", {replace: true})
+                        }}>Logout</Link>
+                    </li>
+                    : ""
+            }
       <li><Link to="/teams">Teams</Link></li>
     </ul>
   </div>
