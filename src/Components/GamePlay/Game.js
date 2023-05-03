@@ -45,7 +45,87 @@ export const Game = () => {
       });
   };
 
-  <ScoreKeeper currentPlayer1={currentPlayer1} currentPlayer2={currentPlayer2} />;
+  const pushTalliedShotsTeam2 = async (madeShot, takenShot) => {
+    try {
+      const response = await fetch(`http://localhost:8080/players/${currentPlayer2.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...currentPlayer2,
+          madeShortBank: madeShot,
+          takenShortBank: takenShot
+        }),
+      });
+  
+      const updatedPlayer = await response.json();
+      capturingCurrentPlayer2(updatedPlayer.id);
+  
+    } catch (error) {
+      console.error("Error updating shots:", error);
+    }
+  };
+  const pushTalliedShotsTeam2mb = async (madeShot, takenShot) => {
+    try {
+      const response = await fetch(`http://localhost:8080/players/${currentPlayer2.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...currentPlayer2,
+          madeMediumBank: madeShot,
+          takenMediumBank: takenShot
+        }),
+      });
+  
+      const updatedPlayer = await response.json();
+      capturingCurrentPlayer2(updatedPlayer.id);
+  
+    } catch (error) {
+      console.error("Error updating shots:", error);
+    }
+  };
+  
+  
+  const tallyFunctionsTeam2 = (madeShot, takenShot, shotResults) => {
+    // console.log(madeShot,takenShot, shotResults);
+    if (shotResults === 0) {
+      const updatedMadeShot= madeShot + 1;
+      const updatedTakenShot = takenShot + 1;
+      pushTalliedShotsTeam2(updatedMadeShot,updatedTakenShot)
+    }else {
+      const updatedMadeShot= madeShot;
+      const updatedTakenShot = takenShot + 1;
+      console.log(madeShot,takenShot);
+      pushTalliedShotsTeam2(updatedMadeShot,updatedTakenShot)
+    }
+  }
+  const tallyFunctionsTeam2mb = (madeShot, takenShot, shotResults) => {
+    // console.log(madeShot,takenShot, shotResults);
+    if (shotResults === 0) {
+      const updatedMadeShot= madeShot + 1;
+      const updatedTakenShot = takenShot + 1;
+      pushTalliedShotsTeam2mb(updatedMadeShot,updatedTakenShot)
+    }else {
+      const updatedMadeShot= madeShot;
+      const updatedTakenShot = takenShot + 1;
+      console.log(madeShot,takenShot);
+      pushTalliedShotsTeam2mb(updatedMadeShot,updatedTakenShot)
+    }
+  }
+
+  const percentageFormula = (takenShot, madeShot) => {
+    console.log(madeShot, takenShot );
+    let total = madeShot/takenShot
+    return Math.floor((total * 100))
+  }
+
+  <ScoreKeeper
+    currentPlayer1={currentPlayer1}
+    currentPlayer2={currentPlayer2}
+  />;
   return (
     <div className="flex justify-between px-64 pt-24">
       <div className="card w-96 bg-neutral shadow-xl">
@@ -66,7 +146,6 @@ export const Game = () => {
           {team1 && (
             <select
               onChange={(evt) => {
-                console.log(evt.target.value);
                 capturingCurrentPlayer1(evt.target.value);
               }}
             >
@@ -81,25 +160,46 @@ export const Game = () => {
           {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
           <div className="card-actions justify-between">
             <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Short Bank</p>
+            <div className="pt-1">
+              <p className="text-center">Short Bank</p>
+              <p className="text-center">{currentPlayer1.madeShortBank}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
             <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Medium Bank</p>
+            <div className="pt-1">
+              <p className="text-center">Medium Bank</p>
+              <p className="text-center">{currentPlayer1.madeMediumBank}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
             <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Long Bank</p>
+            <div className="pt-1">
+              <p className="text-center">Long Bank</p>
+              <p className="text-center">{currentPlayer1.madeLongBank}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
             <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Short Cut</p>
+            <div className="pt-1">
+              <p className="text-center">Short Cut</p>
+              <p className="text-center">{currentPlayer1.madeShortCut}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
             <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Medium Cut</p>
+            <div className="pt-1">
+              <p className="text-center">Medium Cut</p>
+              <p className="text-center">{currentPlayer1.madeMediumCut}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
             <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Long Cut</p>
+            <div className="pt-1">
+              <p className="text-center">Long Cut</p>
+              <p className="text-center">{currentPlayer1.madeLongCut}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
             <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Straight</p>
+            <div className="pt-1">
+              <p className="text-center">Straight</p>
+              <p className="text-center">{currentPlayer1.madeStraight}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
           </div>
         </div>
@@ -107,11 +207,7 @@ export const Game = () => {
       <div className="card w-96 bg-neutral shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Team 2</h2>
-          <select
-            onChange={(evt) => {
-              selectTeamTwo(evt.target.value);
-            }}
-          >
+          <select onChange={(evt) => {selectTeamTwo(evt.target.value)}}>
             <option value={null}>Select Team 2</option>
             {players.map((player) => (
               <Fragment key={player.id}>
@@ -122,10 +218,8 @@ export const Game = () => {
           {team2 && (
             <select
               onChange={(evt) => {
-                console.log(evt.target.value);
                 capturingCurrentPlayer2(evt.target.value);
-              }}
-            >
+              }}>
               <option value={null}>Select Player</option>
               {team2.players.map((player) => (
                 <option key={player.id} value={player.id}>
@@ -136,26 +230,101 @@ export const Game = () => {
           )}
           {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
           <div className="card-actions justify-between">
-            <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Short Bank</p>
+            <button value={0}
+              onClick={(click) => {
+                const madeShotsb = click.target.value;
+                tallyFunctionsTeam2(currentPlayer2.madeShortBank,currentPlayer2.takenShortBank, parseInt(madeShotsb));
+              }}
+              className="btn btn-accent">
+              Made It!</button>
+            <div className="pt-1">
+              <p className="text-center">Short Bank</p>
+              <p className="text-center">{percentageFormula(currentPlayer2.takenShortBank, currentPlayer2.madeShortBank)}%</p>
+            </div>
+            <button value={1}
+              onClick={(click) => {
+                const missedShotsb = click.target.value;
+                tallyFunctionsTeam2(currentPlayer2.madeShortBank,currentPlayer2.takenShortBank, parseInt(missedShotsb))
+              }}
+              className="btn btn-warning">Missed It!</button>
+            
+            
+            
+            <button value={0}
+              onClick={(click) => {
+                const madeShotmb = click.target.value;
+                tallyFunctionsTeam2mb(currentPlayer2.madeMediumBank,currentPlayer2.takenMediumBank, parseInt(madeShotmb));
+              }}
+              className="btn btn-accent">
+              Made It!</button>
+            <div className="pt-1">
+              <p className="text-center">Medium Bank</p>
+              <p className="text-center">{percentageFormula(currentPlayer2.takenMediumBank, currentPlayer2.madeMediumBank)}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
-            <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Medium Bank</p>
+            <button value={1}
+              onClick={(click) => {
+                const missedShotmb = click.target.value;
+                tallyFunctionsTeam2mb(currentPlayer2.madeMediumBank,currentPlayer2.takenMediumBank, parseInt(missedShotmb))
+              }}
+              className="btn btn-accent">
+              Made It!</button>
+            <div className="pt-1">
+              <p className="text-center">Long Bank</p>
+              <p className="text-center">{currentPlayer2.madeLongBank}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
-            <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Long Bank</p>
+            <button
+              onClick={(click) => {
+                const copy = { ...currentPlayer2 };
+                copy.firstName = click.target.value;
+                setCurrentPlayer2(copy);
+              }}
+              className="btn btn-accent">
+              Made It!</button>
+            <div className="pt-1">
+              <p className="text-center">Short Cut</p>
+              <p className="text-center">{currentPlayer1.madeShortCut}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
-            <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Short Cut</p>
+            <button
+              onClick={(click) => {
+                const copy = { ...currentPlayer2 };
+                copy.firstName = click.target.value;
+                setCurrentPlayer2(copy);
+              }}
+              className="btn btn-accent">
+              Made It!</button>
+            <div className="pt-1">
+              <p className="text-center">Medium Cut</p>
+              <p className="text-center">{currentPlayer2.madeMediumCut}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
-            <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Medium Cut</p>
+            <button
+              onClick={(click) => {
+                const copy = { ...currentPlayer2 };
+                copy.firstName = click.target.value;
+                setCurrentPlayer2(copy);
+              }}
+              className="btn btn-accent">
+              Made It!</button>
+            <div className="pt-1">
+              <p className="text-center">Long Cut</p>
+              <p className="text-center">{currentPlayer2.madeLongCut}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
-            <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Long Cut</p>
-            <button className="btn btn-warning">Missed It!</button>
-            <button className="btn btn-accent">Made It!</button>
-            <p className="text-center pt-3">Straight</p>
+            <button
+              onClick={(click) => {
+                const copy = { ...currentPlayer2 };
+                copy.firstName = click.target.value;
+                setCurrentPlayer2(copy);
+              }}
+              className="btn btn-accent">
+              Made It!</button>
+            <div className="pt-1">
+              <p className="text-center">Straight</p>
+              <p className="text-center">{currentPlayer2.madeStraight}%</p>
+            </div>
             <button className="btn btn-warning">Missed It!</button>
           </div>
         </div>
