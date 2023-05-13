@@ -101,32 +101,67 @@ const getTeams = () => {
                         {/* row 1 */}
                         <tr>
                           <th>Short Banks</th>
-                          <td>{percentageFormula(selectedPlayer.takenShortBank, selectedPlayer.madeShortBank)}</td>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenShortBank, selectedPlayer.madeShortBank))
+                              ? 0
+                              : percentageFormula(selectedPlayer.takenShortBank, selectedPlayer.madeShortBank)}
+                          </td>
                         </tr>
+
                         {/* row 2 */}
                         <tr>
                           <th>Medium Banks</th>
-                          <td>{percentageFormula(selectedPlayer.takenMediumBank, selectedPlayer.madeMediumBank)}</td>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenMediumBank, selectedPlayer.madeMediumBank))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenMediumBank, selectedPlayer.madeMediumBank)}
+                          
+                          </td>
                         </tr>
                         <tr>
                           <th>Long Banks</th>
-                          <td>{percentageFormula(selectedPlayer.takenLongBank, selectedPlayer.madeLongBank)}</td>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenLongBank, selectedPlayer.madeLongBank))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenLongBank, selectedPlayer.madeLongBank)}
+                          
+                          </td>
                         </tr>
                         <tr>
                           <th>Short Cut</th>
-                          <td>{percentageFormula(selectedPlayer.takenShortCut, selectedPlayer.madeShortCut)}</td>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenShortCut, selectedPlayer.madeShortCut))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenShortCut, selectedPlayer.madeShortCut)}
+                          
+                          </td>
                         </tr>
                         <tr>
                           <th>Medium Cut</th>
-                          <td>{percentageFormula(selectedPlayer.takenMediumCut, selectedPlayer.madeMediumCut)}</td>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenMediumCut, selectedPlayer.madeMediumCut))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenMediumCut, selectedPlayer.madeMediumCut)}
+                          
+                          </td>
                         </tr>
                         <tr>
                           <th>Long Cut</th>
-                          <td>{percentageFormula(selectedPlayer.takenLongCut, selectedPlayer.madeLongCut)}</td>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenLongCut, selectedPlayer.madeLongCut))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenLongCut, selectedPlayer.madeLongCut)}
+                          
+                          </td>
                         </tr>
                         <tr>
                           <th>Straight</th>
-                          <td>{percentageFormula(selectedPlayer.takenStraight, selectedPlayer.madeStraight)}</td>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenStraight, selectedPlayer.madeStraight))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenStraight, selectedPlayer.madeStraight)}
+                          
+                          </td>
                         </tr>
                         {/* row 3 */}
                       </tbody>

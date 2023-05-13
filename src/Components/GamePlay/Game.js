@@ -543,7 +543,12 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Short Bank</p>
-              <p className="text-center">{percentageFormula(currentPlayer1.takenShortBank, currentPlayer1.madeShortBank)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer1.takenShortBank, currentPlayer1.madeShortBank))
+                ? 0
+                : percentageFormula(currentPlayer1.takenShortBank, currentPlayer1.madeShortBank)+"%"}
+              
+              </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -563,7 +568,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Medium Bank</p>
-              <p className="text-center">{percentageFormula(currentPlayer1.takenMediumBank, currentPlayer1.madeMediumBank)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer1.takenMediumBank, currentPlayer1.madeMediumBank))
+                ? 0
+                : percentageFormula(currentPlayer1.takenMediumBank, currentPlayer1.madeMediumBank)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -582,7 +591,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Long Bank</p>
-              <p className="text-center">{percentageFormula(currentPlayer1.takenLongBank, currentPlayer1.madeLongBank)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer1.takenLongBank, currentPlayer1.madeLongBank))
+                ? 0
+                : percentageFormula(currentPlayer1.takenLongBank, currentPlayer1.madeLongBank)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -601,7 +614,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Short Cut</p>
-              <p className="text-center">{percentageFormula(currentPlayer1.takenShortCut, currentPlayer1.madeShortCut)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer1.takenShortCut, currentPlayer1.madeShortCut))
+                ? 0
+                : percentageFormula(currentPlayer1.takenShortCut, currentPlayer1.madeShortCut)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -621,7 +638,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Medium Cut</p>
-              <p className="text-center">{percentageFormula(currentPlayer1.takenMediumCut, currentPlayer1.madeMediumCut)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer1.takenMediumCut, currentPlayer1.madeMediumCut))
+                ? 0
+                : percentageFormula(currentPlayer1.takenMediumCut, currentPlayer1.madeMediumCut)+"%"}     
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -637,7 +658,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Long Cut</p>
-              <p className="text-center">{percentageFormula(currentPlayer1.takenLongCut, currentPlayer1.madeLongCut)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer1.takenLongCut, currentPlayer1.madeLongCut))
+                ? 0
+                : percentageFormula(currentPlayer1.takenLongCut, currentPlayer1.madeLongCut)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -653,7 +678,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Straight</p>
-              <p className="text-center">{percentageFormula(currentPlayer1.takenStraight, currentPlayer1.madeStraight)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer1.takenStraight, currentPlayer1.madeStraight))
+                ? 0
+                : percentageFormula(currentPlayer1.takenStraight, currentPlayer1.madeStraight)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -698,7 +727,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Short Bank</p>
-              <p className="text-center">{percentageFormula(currentPlayer2.takenShortBank, currentPlayer2.madeShortBank)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer2.takenShortBank, currentPlayer2.madeShortBank))
+                ? 0
+                : percentageFormula(currentPlayer2.takenShortBank, currentPlayer2.madeShortBank)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -718,7 +751,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Medium Bank</p>
-              <p className="text-center">{percentageFormula(currentPlayer2.takenMediumBank, currentPlayer2.madeMediumBank)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer2.takenMediumBank, currentPlayer2.madeMediumBank))
+                ? 0
+                : percentageFormula(currentPlayer2.takenMediumBank, currentPlayer2.madeMediumBank)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -737,7 +774,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Long Bank</p>
-              <p className="text-center">{percentageFormula(currentPlayer2.takenLongBank, currentPlayer2.madeLongBank)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer2.takenLongBank, currentPlayer2.madeLongBank))
+                ? 0
+                : percentageFormula(currentPlayer2.takenLongBank, currentPlayer2.madeLongBank)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -756,7 +797,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Short Cut</p>
-              <p className="text-center">{percentageFormula(currentPlayer2.takenShortCut, currentPlayer2.madeShortCut)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer2.takenShortCut, currentPlayer2.madeShortCut))
+                ? 0
+                : percentageFormula(currentPlayer2.takenShortCut, currentPlayer2.madeShortCut)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -776,7 +821,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Medium Cut</p>
-              <p className="text-center">{percentageFormula(currentPlayer2.takenMediumCut, currentPlayer2.madeMediumCut)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer2.takenMediumCut, currentPlayer2.madeMediumCut))
+                ? 0
+                : percentageFormula(currentPlayer2.takenMediumCut, currentPlayer2.madeMediumCut)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -792,7 +841,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Long Cut</p>
-              <p className="text-center">{percentageFormula(currentPlayer2.takenLongCut, currentPlayer2.madeLongCut)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer2.takenLongCut, currentPlayer2.madeLongCut))
+                ? 0
+                : percentageFormula(currentPlayer2.takenLongCut, currentPlayer2.madeLongCut)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
@@ -808,7 +861,11 @@ export const Game = () => {
               Made It!</button>
             <div className="pt-1">
               <p className="text-center">Straight</p>
-              <p className="text-center">{percentageFormula(currentPlayer2.takenStraight, currentPlayer2.madeStraight)}%</p>
+              <p className="text-center">
+                {isNaN(percentageFormula(currentPlayer2.takenStraight, currentPlayer2.madeStraight))
+                ? 0
+                : percentageFormula(currentPlayer2.takenStraight, currentPlayer2.madeStraight)+"%"}
+                </p>
             </div>
             <button value={1}
               onClick={(click) => {
