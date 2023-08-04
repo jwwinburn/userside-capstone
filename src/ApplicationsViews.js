@@ -4,7 +4,6 @@ import { NewPlayerForm } from "./Components/NewPlayerForm/NewPlayerForm";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Game } from "./Components/GamePlay/Game";
 import { StartGame } from "./Components/GamePlay/StartGame";
-import { NewUserForm } from "./Components/Login/NewUserForm";
 
 
 export const ApplicationViews = () => {
