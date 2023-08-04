@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NavBar } from "../NavBar/NavBar";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ export const Login = () => {
     e.preventDefault();
 
     
-    fetch(`http://localhost:8080/user?email=${email}`)
+    fetch(`http://localhost:8080/users?email=${email}`)
       .then((response) => response.json())
       .then((foundUsers) => {
         if (foundUsers.length === 1) {
@@ -66,6 +66,12 @@ export const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn btn-primary"
+                onClick={() => navigate("/newuser")}
+                type="button"
+                >Register</button>
               </div>
             </div>
           </div>

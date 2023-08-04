@@ -8,6 +8,7 @@ export const Teams = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(false);
   const [alternateView, setAlternateView] = useState(false);
 
+
   useEffect(() => {
     fetch(`http://localhost:8080/teams?_embed=players`)
       .then((response) => response.json())
@@ -17,7 +18,7 @@ export const Teams = () => {
   }, []);
 
 const getTeams = () => {
-  fetch(`http://localhost:8080/teams?_embed=players`)
+  return fetch(`http://localhost:8080/teams?_embed=players`)
       .then((response) => response.json())
       .then((teamArray) => {
         setTeams(teamArray);
@@ -31,14 +32,21 @@ const getTeams = () => {
     const handleAlternateView = () => {
       // implement logic for alternate view
     };
-
     // render alternate view based on the value of alternateView state
+
     <div>
       <button onClick={handleAlternateView}>View Alternate</button>
     </div>;
   };
+
+  const percentageFormula = (takenShot, madeShot) => {
+    console.log(madeShot, takenShot );
+    let total = madeShot/takenShot
+    return Math.floor((total * 100))
+  }
+
   return (
-    <div className="flex flex-wrap justify-around pt-20">
+    <div className ="flex flex-wrap justify-around pt-20">
       {teams.map(({ ...team }) => (
         <Fragment key={team.id}>
           <div className="flex justify-around pt-10">
@@ -73,7 +81,7 @@ const getTeams = () => {
               </h3>
               {alternateView ? (
                 <div>
-                  <PlayerForm selectedPlayer={selectedPlayer} getTeams={getTeams} setSelectedPlayer={setSelectedPlayer} />
+                  <PlayerForm selectedPlayer={selectedPlayer} getTeams={getTeams} setSelectedPlayer={setSelectedPlayer} setShowModal = {setShowModal} />
                 </div>
               ) : (
                 <div>
@@ -92,33 +100,68 @@ const getTeams = () => {
                       <tbody>
                         {/* row 1 */}
                         <tr>
-                          <th>S Banks</th>
-                          <td>{selectedPlayer.sbank}</td>
+                          <th>Short Banks</th>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenShortBank, selectedPlayer.madeShortBank))
+                              ? 0
+                              : percentageFormula(selectedPlayer.takenShortBank, selectedPlayer.madeShortBank)}
+                          </td>
                         </tr>
+
                         {/* row 2 */}
                         <tr>
-                          <th>M Banks</th>
-                          <td>{selectedPlayer.mbank}</td>
+                          <th>Medium Banks</th>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenMediumBank, selectedPlayer.madeMediumBank))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenMediumBank, selectedPlayer.madeMediumBank)}
+                          
+                          </td>
                         </tr>
                         <tr>
-                          <th>L Banks</th>
-                          <td>{selectedPlayer.lbank}</td>
+                          <th>Long Banks</th>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenLongBank, selectedPlayer.madeLongBank))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenLongBank, selectedPlayer.madeLongBank)}
+                          
+                          </td>
                         </tr>
                         <tr>
-                          <th>S Cut Banks</th>
-                          <td>30</td>
+                          <th>Short Cut</th>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenShortCut, selectedPlayer.madeShortCut))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenShortCut, selectedPlayer.madeShortCut)}
+                          
+                          </td>
                         </tr>
                         <tr>
-                          <th>M Cut</th>
-                          <td>30</td>
+                          <th>Medium Cut</th>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenMediumCut, selectedPlayer.madeMediumCut))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenMediumCut, selectedPlayer.madeMediumCut)}
+                          
+                          </td>
                         </tr>
                         <tr>
-                          <th>L Cut</th>
-                          <td>30</td>
+                          <th>Long Cut</th>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenLongCut, selectedPlayer.madeLongCut))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenLongCut, selectedPlayer.madeLongCut)}
+                          
+                          </td>
                         </tr>
                         <tr>
-                          <th>M Cut</th>
-                          <td>30</td>
+                          <th>Straight</th>
+                          <td>
+                            {isNaN(percentageFormula(selectedPlayer.takenStraight, selectedPlayer.madeStraight))
+                          ? 0
+                          : percentageFormula(selectedPlayer.takenStraight, selectedPlayer.madeStraight)}
+                          
+                          </td>
                         </tr>
                         {/* row 3 */}
                       </tbody>

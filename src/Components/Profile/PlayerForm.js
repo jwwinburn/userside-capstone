@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { NavBar } from "../NavBar/NavBar";
 import { Teams } from "../NewPlayerForm/Teams";
 
-export const PlayerForm = ({ selectedPlayer, getTeams, setSelectedPlayer }) => {
+export const PlayerForm = ({ selectedPlayer, getTeams, setSelectedPlayer, setShowModal }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -27,7 +27,8 @@ export const PlayerForm = ({ selectedPlayer, getTeams, setSelectedPlayer }) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(getTeams);
+    }).then(getTeams)
+      .then(() => {setShowModal(false)} )
   };
   return (
     <>

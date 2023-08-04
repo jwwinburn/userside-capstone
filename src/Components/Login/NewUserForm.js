@@ -2,14 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavBar } from "../NavBar/NavBar";
 
-export const NewPlayerForm = () => {
+export const NewUserForm = () => {
   const [players, setPlayers] = useState({
     userId: "",
     firstName: "",
     lastName: "",
-    email: "",
-    teamId: "",
-    skillLevel: "",
+    email: ""
   });
 
   const navigate = useNavigate();
@@ -20,24 +18,22 @@ export const NewPlayerForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const playerToSendToAPI = {
+    const userToSendToAPI = {
       "firstName": players.firstName,
       "lastName": players.lastName,
       "email": players.email,
-      "teamId": parseInt(players.teamId) ,
-      "skillLevel": players.skillLevel
     };
 
-    return fetch(`http://localhost:8080/players?_expand=team`,{
+    return fetch(`http://localhost:8080/users`,{
   method: "POST",
   headers: {"Content-Type": "application/json"
   },
-  body: JSON.stringify(playerToSendToAPI)
+  body: JSON.stringify(userToSendToAPI)
 })
   .then((response) => response.json())
   .then((newPlayer) => {
     console.log('newPlayer:', newPlayer);
-    navigate("/teams");
+    navigate("/");
   });
 
   };
@@ -119,59 +115,12 @@ export const NewPlayerForm = () => {
                     />
                   </div>
                 </fieldset>
-
-
-                
-                  <fieldset>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Team</span>
-                    </label>
-                    <select className="select w-full max-w-xs select-bordered"
-                    onChange={
-                      (evt) => {
-                        const copy = {...players}
-                        copy.teamId = evt.target.value
-                        setPlayers(copy)
-                        }
-                    }>
-                    <option disabled selected></option>
-                    <option value={1}>It's Your Rack</option>
-                    <option value={2}>Cutting Corners</option>
-                    <option value={3}>Miscued</option>
-                    <option value={4}>DOA (AKA No Mercy)</option>
-                    <option value={5}>Froggy & Jeffros</option>
-                    <option value={6}>Chalking It Up</option>
-                  </select>
-                  </div>
-                </fieldset>
-
-                    
-                  <fieldset>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Skill Level</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder=""
-                      className="input input-bordered"
-                      value={players.skillLevel}
-                      onChange={
-                        (evt) => {
-                        const copy = {...players}
-                        copy.skillLevel = evt.target.value
-                        setPlayers(copy)
-                        }
-                      }
-                    />
-                  </div>
-                </fieldset>
               </form>
               <div className="form-control mt-6">
                 <button className="btn btn-primary text-2xl"
-                onClick={(clickEvent) => handleSubmit(clickEvent)}>
-                Add player</button>
+                onClick={(clickEvent) => handleSubmit(clickEvent)}
+                type="button">
+                create user</button>
               </div>
             </div>
           </div>
